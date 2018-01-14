@@ -39,10 +39,10 @@ void loop() {
       imu.readMotionSensor(ax, ay, az, gx, gy, gz, mx, my, mz);
 
       // Update the SensorFusion filter
-      //filter.update(gx, gy, gz, ax, ay, az, mx, my, mz);
+      filter.update(gx, gy, gz, ax, ay, az, mx, my, mz);
       //filter.update(gz, gy, -gx, az, ay, -ax, mz, my, -mx); // xbee down
       //filter.update(-gz, gy, gx, -az, ay, ax, -mz, my, mx); // xbee up
-      filter.update(-gx, gz, gy, -ax, az, ay, -mx, mz, my); // Side Left shoe (xbee back) 
+      //filter.update(-gx, gz, gy, -ax, az, ay, -mx, mz, my); // Side Left shoe (xbee back) 
       // print the heading, pitch and roll
       roll = filter.getRoll();
       pitch = filter.getPitch();
@@ -55,7 +55,7 @@ void loop() {
       float sensor4 = adcToForce(analogRead(A3));
       int sensor5 = analogRead(A6);
       // send to screen
-      Serial.print("IMU:");
+      Serial.print("IMU2:");
       Serial.print(filterMiliis);
       Serial.print(",");
       Serial.print(heading);
@@ -78,7 +78,7 @@ void loop() {
 
 
       // send to xbee
-      Serial1.print("IMU:");
+      Serial1.print("IMU2:");
       Serial1.print(filterMiliis);
       Serial1.print(",");
       Serial1.print(heading);
